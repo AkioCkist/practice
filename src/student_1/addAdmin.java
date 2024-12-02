@@ -7,22 +7,24 @@ package student_1;
 import com.mysql.cj.xdevapi.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author AkioCkist
  */
-public class addStudent extends javax.swing.JFrame {
+public class addAdmin extends javax.swing.JFrame {
 
     /**
-     * Creates new form addStudent
+     * Creates new form addAdmin
      */
     Connection conn = null;
     java.sql.Statement stmt = null;
     ResultSet rs = null;
     
-    public addStudent() {
-        super("Add Student");
+    public addAdmin() {
+        super("Add Admin");
         initComponents();
         conn = databaseConnection.connection();
     }
@@ -40,15 +42,9 @@ public class addStudent extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
-        city = new javax.swing.JTextField();
-        phone = new javax.swing.JTextField();
-        jclass = new javax.swing.JTextField();
-        major = new javax.swing.JComboBox<>();
+        email = new javax.swing.JTextField();
+        Password = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -57,27 +53,17 @@ public class addStudent extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Admin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel1.setText("Name:");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Password name:");
+        jLabel2.setText("Email:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel3.setText("City:");
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel4.setText("Major:");
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel5.setText("Phone:");
-
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel6.setText("Class:");
+        jLabel3.setText("Password:");
 
         name.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         name.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -86,44 +72,22 @@ public class addStudent extends javax.swing.JFrame {
             }
         });
 
-        password.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        password.addActionListener(new java.awt.event.ActionListener() {
+        email.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
-        password.addKeyListener(new java.awt.event.KeyAdapter() {
+        email.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                passwordKeyReleased(evt);
+                emailKeyReleased(evt);
             }
         });
 
-        city.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        city.addKeyListener(new java.awt.event.KeyAdapter() {
+        Password.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                cityKeyReleased(evt);
-            }
-        });
-
-        phone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        phone.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                phoneKeyReleased(evt);
-            }
-        });
-
-        jclass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jclass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jclassKeyReleased(evt);
-            }
-        });
-
-        major.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        major.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Biomedical Science (BMS)", "Computer Science and Engineering (CSE)", "Data Science (DS)", "Software Engineering (SE)", "Nanotechnology", "International Business and Management (IBM)", "International Tourism and Hospitality Management (THM)", "Digital Business Management (DBM)", "Data-driven Marketing (DDM)", "International Business Commerce (IBC)" }));
-        major.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                majorActionPerformed(evt);
+                PasswordKeyReleased(evt);
             }
         });
 
@@ -149,65 +113,44 @@ public class addStudent extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 14, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(password)
-                    .addComponent(major, 0, 476, Short.MAX_VALUE)
-                    .addComponent(jclass)
-                    .addComponent(phone)
+                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                     .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(city, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(89, 89, 89))
+                    .addComponent(Password, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(88, 88, 88))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(214, 214, 214)
+                .addGap(101, 101, 101)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(123, 123, 123))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(major, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jclass, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGap(61, 61, 61))
         );
 
         jMenu1.setText("File");
@@ -250,44 +193,12 @@ public class addStudent extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(799, 874));
+        setSize(new java.awt.Dimension(582, 608));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    String value = major.getSelectedItem().toString();   
-    if(value.equals("--Select--")){
-        JOptionPane.showMessageDialog(this, 
-        "<html><font face='Arial' size='10' color='black'>Please select a major before submiting");
-    }
-    else{
-        try{
-            stmt = conn.createStatement();
-            String stdName = name.getText();
-            String stdMajor = (String) major.getSelectedItem();
-            String stdPassword = password.getText();
-            String stdCity = city.getText();
-            String stdPhone = phone.getText();
-            int stdclass = Integer.parseInt(jclass.getText());
-            
-            String sql = "INSERT INTO STUDENT(stdName, stdPassword, stdMajor, stdCity, stdPhone, class) VALUES('"+stdName+"', '"+stdPassword+"', '"+stdMajor+"','"+stdCity+"', '"+stdPhone+"', '"+stdclass+"')";
-            
-            stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"Data has successfuly inserted");
-            
-            setVisible(false);
-            addStudent object = new addStudent();
-            object.setVisible(true);
-        }
-        catch(Exception e){
-           JOptionPane.showMessageDialog(null,e);
-        }
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -303,9 +214,52 @@ public class addStudent extends javax.swing.JFrame {
         object.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+        if(name.getText().length() >= 1 && email.getText().length() >= 1 && Password.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameKeyReleased
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && email.getText().length() >= 1 && Password.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_emailKeyReleased
+
+    private void PasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && email.getText().length() >= 1 && Password.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_PasswordKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:    
+        try{
+            stmt = conn.createStatement();
+            String adminName = name.getText();
+            String adminMail = email.getText();
+            String adminPass = Password.getText();
+            
+            String sql = "INSERT INTO ADMIN (mail, password, name)values('"+adminMail+"','"+adminPass+"', '"+adminName+"')";
+            
+            stmt.execute(sql);
+            JOptionPane.showMessageDialog(null, "Data inserted successfully");
+            
+            setVisible(false);
+            addAdmin object = new addAdmin();
+            object.setVisible(true);
+        }
+        catch(SQLException e){
+           JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -313,45 +267,6 @@ public class addStudent extends javax.swing.JFrame {
         home object = new home();
         object.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void majorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_majorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_majorActionPerformed
-
-    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_nameKeyReleased
-
-    private void passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_passwordKeyReleased
-
-    private void cityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cityKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_cityKeyReleased
-
-    private void jclassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jclassKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_jclassKeyReleased
-
-    private void phoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_phoneKeyReleased
 
     /**
      * @param args the command line arguments
@@ -370,43 +285,37 @@ public class addStudent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addStudent().setVisible(true);
+                new addAdmin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField city;
+    private javax.swing.JTextField Password;
+    private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jclass;
-    private javax.swing.JComboBox<String> major;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField password;
-    private javax.swing.JTextField phone;
     // End of variables declaration//GEN-END:variables
 }
