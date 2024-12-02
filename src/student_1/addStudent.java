@@ -80,6 +80,11 @@ public class addStudent extends javax.swing.JFrame {
         jLabel6.setText("Class:");
 
         name.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameKeyReleased(evt);
+            }
+        });
 
         fatherName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         fatherName.addActionListener(new java.awt.event.ActionListener() {
@@ -87,12 +92,32 @@ public class addStudent extends javax.swing.JFrame {
                 fatherNameActionPerformed(evt);
             }
         });
+        fatherName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fatherNameKeyReleased(evt);
+            }
+        });
 
         city.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        city.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cityKeyReleased(evt);
+            }
+        });
 
         phone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                phoneKeyReleased(evt);
+            }
+        });
 
         jclass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jclass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jclassKeyReleased(evt);
+            }
+        });
 
         major.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         major.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Biomedical Science (BMS)", "Computer Science and Engineering (CSE)", "Data Science (DS)", "Software Engineering (SE)", "Nanotechnology", "International Business and Management (IBM)", "International Tourism and Hospitality Management (THM)", "Digital Business Management (DBM)", "Data-driven Marketing (DDM)", "International Business Commerce (IBC)" }));
@@ -104,6 +129,7 @@ public class addStudent extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\submit.png")); // NOI18N
         jButton1.setText("Submit");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -291,6 +317,41 @@ public class addStudent extends javax.swing.JFrame {
     private void majorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_majorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_majorActionPerformed
+
+    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && fatherName.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_nameKeyReleased
+
+    private void fatherNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fatherNameKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && fatherName.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_fatherNameKeyReleased
+
+    private void cityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cityKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && fatherName.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_cityKeyReleased
+
+    private void jclassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jclassKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && fatherName.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_jclassKeyReleased
+
+    private void phoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyReleased
+        // TODO add your handling code here:
+        if(name.getText().length() >= 1 && fatherName.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_phoneKeyReleased
 
     /**
      * @param args the command line arguments

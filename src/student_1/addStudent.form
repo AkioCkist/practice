@@ -238,6 +238,9 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="fatherName">
           <Properties>
@@ -247,6 +250,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fatherNameActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fatherNameKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="city">
@@ -255,6 +259,9 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cityKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="phone">
           <Properties>
@@ -262,6 +269,9 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="phoneKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jclass">
           <Properties>
@@ -269,6 +279,9 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jclassKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="major">
           <Properties>
@@ -304,6 +317,7 @@
               <Image iconType="2" name="C:\Users\AkioCkist\Downloads\project Image\submit.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Submit"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
