@@ -65,7 +65,7 @@ public class addStudent extends javax.swing.JFrame {
         jLabel1.setText("Name:");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Password name:");
+        jLabel2.setText("Password:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel3.setText("City:");
@@ -158,12 +158,12 @@ public class addStudent extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 14, Short.MAX_VALUE))
+                        .addGap(0, 36, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(password)
-                    .addComponent(major, 0, 476, Short.MAX_VALUE)
+                    .addComponent(major, 0, 497, Short.MAX_VALUE)
                     .addComponent(jclass)
                     .addComponent(phone)
                     .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING)

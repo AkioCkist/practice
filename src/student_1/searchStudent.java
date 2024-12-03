@@ -355,7 +355,7 @@ public class searchStudent extends javax.swing.JFrame {
                 String stdPhone = phone.getText();
                 int stdclass = Integer.parseInt(jclass.getText());
 
-                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdFatherName = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE id = '"+stdID+"'";
+                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE id = '"+stdID+"'";
 
                 stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null,"Data has successfuly updated");
