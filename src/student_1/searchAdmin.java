@@ -323,8 +323,9 @@ public class searchAdmin extends javax.swing.JFrame {
             String adminName = name.getText();
             String adminMail = mail.getText();
             String adminPassword = password.getText();
+            
 
-            String sql = "UPDATE admin SET mail = '"+adminMail+"', name = '"+adminName+"', password = '"+adminPassword+"'WHERE id = '"+adminID+"'";
+            String sql = "UPDATE admin SET mail = '"+adminMail+"', name = '"+adminName+"', password = '"+adminPassword+"', adminID = '"+adminID+"' WHERE adminID = '"+adminID+"'";
 
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data has successfuly updated");
@@ -357,7 +358,7 @@ public class searchAdmin extends javax.swing.JFrame {
         try{
             stmt = conn.createStatement();
             int adminID = Integer.parseInt(id.getText());
-            String sql = "SELECT * FROM admin WHERE id = '"+adminID+"'";
+            String sql = "SELECT * FROM admin WHERE adminID = '"+adminID+"'";
 
             rs = stmt.executeQuery(sql);
 
@@ -381,11 +382,11 @@ public class searchAdmin extends javax.swing.JFrame {
         try{
             stmt = conn.createStatement();
             int adminID = Integer.parseInt(id.getText());
-            String sql = "DELETE FROM admin WHERE id = '"+id+"'";
+            String sql = "DELETE FROM admin WHERE adminID = '"+adminID+"'";
             stmt.executeUpdate(sql);
 
             setVisible(false);
-            showStudent object = new showStudent();
+            showAdmin object = new showAdmin();
             object.setVisible(true);
         }
         catch(Exception e){
