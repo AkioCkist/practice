@@ -8,6 +8,11 @@ import com.mysql.cj.xdevapi.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.security.SecureRandom;
 /**
  *
  * @author AkioCkist
@@ -431,19 +436,89 @@ public class searchStudent extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        try{
-            stmt = conn.createStatement();
-            int stdID = Integer.parseInt(id.getText());
-            String sql = "DELETE FROM student WHERE stdID = '"+stdID+"'";
-            stmt.executeUpdate(sql);
-            
-            setVisible(false);
-            showStudent object = new showStudent();
-            object.setVisible(true);
+        int attempts = 0; // Track the number of attempts
+        boolean isConfirmed = false; // Flag to check if the code is confirmed
+
+        while (attempts < 4 && !isConfirmed) {
+            // Generate a random 8-character string
+            String confirmationCode = generateRandomString(8);
+
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel(
+                "Type the following code to confirm deletion: " + confirmationCode +
+                " (Attempts left: " + (4 - attempts) + ")"
+            );
+            JTextField textField = new JTextField(10);
+
+            panel.add(label);
+            panel.add(textField);
+
+            int response = JOptionPane.showConfirmDialog(
+                this, 
+                panel, 
+                "Confirm Deletion", 
+                JOptionPane.OK_CANCEL_OPTION, 
+                JOptionPane.WARNING_MESSAGE
+            );
+
+            if (response == JOptionPane.OK_OPTION) {
+                String userInput = textField.getText().trim();
+                if (confirmationCode.equals(userInput)) {
+                    isConfirmed = true; // User confirmed the code
+                    break;
+                } else {
+                    attempts++;
+                    if (attempts < 4) {
+                        JOptionPane.showMessageDialog(
+                            this, 
+                            "Incorrect code. Please try again.", 
+                            "Error", 
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Deletion canceled.", "Canceled", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
         }
-        catch(Exception e){
-           JOptionPane.showMessageDialog(null,e);
+
+        if (isConfirmed) {
+            // Perform the delete operation
+                    try{
+                        stmt = conn.createStatement();
+                        int stdID = Integer.parseInt(id.getText());
+                        String sql = "DELETE FROM student WHERE stdID = '"+stdID+"'";
+                        stmt.executeUpdate(sql);
+
+                        setVisible(false);
+                        showStudent object = new showStudent();
+                        object.setVisible(true);
+            }
+            catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+            }
+        } else {
+            // User failed
+            JOptionPane.showMessageDialog(
+                this, 
+                "You have exceeded the maximum number of attempts. Deletion canceled.", 
+                "Failed", 
+                JOptionPane.ERROR_MESSAGE
+            );
         }
+    }
+
+    //Random generator
+    private String generateRandomString(int length) {
+        final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

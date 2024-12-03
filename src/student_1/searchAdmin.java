@@ -6,7 +6,11 @@ package student_1;
 import com.mysql.cj.xdevapi.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.security.SecureRandom;
 /**
  *
  * @author AkioCkist
@@ -379,19 +383,90 @@ public class searchAdmin extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        try{
-            stmt = conn.createStatement();
-            int adminID = Integer.parseInt(id.getText());
-            String sql = "DELETE FROM admin WHERE adminID = '"+adminID+"'";
-            stmt.executeUpdate(sql);
+        //Warning table
+	int attempts = 0; 
+        boolean isConfirmed = false;
 
-            setVisible(false);
-            showAdmin object = new showAdmin();
-            object.setVisible(true);
+        while (attempts < 4 && !isConfirmed) {
+            // Generate random string
+            String confirmationCode = generateRandomString(8);
+
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel(
+                "Type the following code to confirm deletion: " + confirmationCode +
+                " (Attempts left: " + (4 - attempts) + ")"
+            );
+            JTextField textField = new JTextField(10);
+
+            panel.add(label);
+            panel.add(textField);
+
+            int response = JOptionPane.showConfirmDialog(
+                this, 
+                panel, 
+                "Confirm Deletion", 
+                JOptionPane.OK_CANCEL_OPTION, 
+                JOptionPane.WARNING_MESSAGE
+            );
+
+            if (response == JOptionPane.OK_OPTION) {
+                String userInput = textField.getText().trim();
+                if (confirmationCode.equals(userInput)) {
+                    isConfirmed = true;
+                    break;
+                } else {
+                    attempts++;
+                    if (attempts < 4) {
+                        JOptionPane.showMessageDialog(
+                            this, 
+                            "Incorrect code. Please try again.", 
+                            "Error", 
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Deletion canceled.", "Canceled", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
         }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+
+        if (isConfirmed) {
+            // Perform the delete operation
+            try{
+                stmt = conn.createStatement();
+                int adminID = Integer.parseInt(id.getText());
+                String sql = "DELETE FROM admin WHERE adminID = '"+adminID+"'";
+                stmt.executeUpdate(sql);
+
+                setVisible(false);
+                showAdmin object = new showAdmin();
+                object.setVisible(true);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        } else {
+            // User failed 
+            JOptionPane.showMessageDialog(
+                this, 
+                "You have exceeded the maximum number of attempts. Deletion canceled.", 
+                "Failed", 
+                JOptionPane.ERROR_MESSAGE
+            );
         }
+    }
+
+// Random Method
+    private String generateRandomString(int length) {
+        final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
