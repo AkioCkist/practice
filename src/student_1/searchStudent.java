@@ -355,7 +355,7 @@ public class searchStudent extends javax.swing.JFrame {
                 String stdPhone = phone.getText();
                 int stdclass = Integer.parseInt(jclass.getText());
 
-                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE id = '"+stdID+"'";
+                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE stdID = '"+stdID+"'";
 
                 stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null,"Data has successfuly updated");
@@ -392,7 +392,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-                    
+        update.setEnabled(true);           
         jButton4.setEnabled(true);
         
         name.setEnabled(true);
@@ -405,7 +405,7 @@ public class searchStudent extends javax.swing.JFrame {
         try{
             stmt = conn.createStatement();
             int stdID = Integer.parseInt(id.getText());
-            String sql = "SELECT * FROM STUDENT WHERE id = '"+stdID+"'";
+            String sql = "SELECT * FROM STUDENT WHERE stdID = '"+stdID+"'";
             
             rs = stmt.executeQuery(sql);
             
@@ -441,8 +441,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
         // TODO add your handling code here:
-        if(id.getText().length() >= 1){
-            update.setEnabled(true);
+        if(id.getText().length() >= 1){          
             jButton3.setEnabled(true);
         }
     }//GEN-LAST:event_idKeyReleased
@@ -452,7 +451,7 @@ public class searchStudent extends javax.swing.JFrame {
         try{
             stmt = conn.createStatement();
             int stdID = Integer.parseInt(id.getText());
-            String sql = "DELETE FROM student WHERE id = '"+stdID+"'";
+            String sql = "DELETE FROM student WHERE stdID = '"+stdID+"'";
             stmt.executeUpdate(sql);
             
             setVisible(false);
