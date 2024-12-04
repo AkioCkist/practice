@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author AkioCkist
  */
-public class addStudent extends javax.swing.JFrame {
+public class addScore extends javax.swing.JFrame {
 
     /**
      * Creates new form addStudent
@@ -21,7 +21,7 @@ public class addStudent extends javax.swing.JFrame {
     java.sql.Statement stmt = null;
     ResultSet rs = null;
     
-    public addStudent() {
+    public addScore() {
         super("Add Student");
         initComponents();
         conn = databaseConnection.connection();
@@ -41,18 +41,14 @@ public class addStudent extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
-        city = new javax.swing.JTextField();
-        phone = new javax.swing.JTextField();
-        jclass = new javax.swing.JTextField();
-        major = new javax.swing.JComboBox<>();
+        math = new javax.swing.JTextField();
+        english = new javax.swing.JTextField();
+        sience = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        history = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -67,21 +63,19 @@ public class addStudent extends javax.swing.JFrame {
         jLabel1.setText("Name:");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Password:");
+        jLabel2.setText("Math:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel3.setText("City:");
+        jLabel3.setText("English:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel4.setText("Major:");
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel5.setText("Phone:");
+        jLabel4.setText("Sience:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel6.setText("Class:");
+        jLabel6.setText("History:");
 
         name.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        name.setEnabled(false);
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameActionPerformed(evt);
@@ -93,49 +87,34 @@ public class addStudent extends javax.swing.JFrame {
             }
         });
 
-        password.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        password.addActionListener(new java.awt.event.ActionListener() {
+        math.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        math.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                mathActionPerformed(evt);
             }
         });
-        password.addKeyListener(new java.awt.event.KeyAdapter() {
+        math.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                passwordKeyReleased(evt);
+                mathKeyReleased(evt);
             }
         });
 
-        city.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        city.addKeyListener(new java.awt.event.KeyAdapter() {
+        english.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        english.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                cityKeyReleased(evt);
+                englishKeyReleased(evt);
             }
         });
 
-        phone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        phone.addKeyListener(new java.awt.event.KeyAdapter() {
+        sience.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sience.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                phoneKeyReleased(evt);
+                sienceKeyReleased(evt);
             }
         });
 
-        jclass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jclass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jclassKeyReleased(evt);
-            }
-        });
-
-        major.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        major.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select--", "Biomedical Science (BMS)", "Computer Science and Engineering (CSE)", "Data Science (DS)", "Software Engineering (SE)", "Nanotechnology", "International Business and Management (IBM)", "International Tourism and Hospitality Management (THM)", "Digital Business Management (DBM)", "Data-driven Marketing (DDM)", "International Business Commerce (IBC)" }));
-        major.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                majorActionPerformed(evt);
-            }
-        });
-
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\plus_4315609.png")); // NOI18N
-        jButton1.setText("Add Score");
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\submit.png")); // NOI18N
+        jButton1.setText("Submit");
         jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,15 +130,17 @@ public class addStudent extends javax.swing.JFrame {
             }
         });
 
-        id.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        id.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                idKeyReleased(evt);
+        history.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        history.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyActionPerformed(evt);
             }
         });
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel7.setText("ID:");
+        history.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                historyKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,27 +154,25 @@ public class addStudent extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel4))
+                        .addGap(0, 29, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(password)
-                    .addComponent(major, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jclass)
-                    .addComponent(phone)
+                    .addComponent(sience)
+                    .addComponent(english, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(math, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(name, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(city, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(id))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(history, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(89, 89, 89))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(132, 132, 132)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137)
                 .addComponent(jButton2)
-                .addGap(211, 211, 211))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,32 +184,24 @@ public class addStudent extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(math, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(english, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(major, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                    .addComponent(sience, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jclass, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(history, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -273,47 +244,44 @@ public class addStudent extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(799, 942));
+        setSize(new java.awt.Dimension(799, 793));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    String value = major.getSelectedItem().toString();   
-    if(value.equals("--Select--")){
+    double valueMath = Double.valueOf(math.getText());
+    double valueEnglish = Double.valueOf(english.getText());
+    double valueSience = Double.valueOf(sience.getText());
+    double valueHistory = Double.valueOf(history.getText());
+    if(Double.toString(valueMath).length() == 0 && Double.toString(valueEnglish).length() == 0 && Double.toString(valueSience).length() == 0 && Double.toString(valueHistory).length() == 0){
         JOptionPane.showMessageDialog(this, 
-        "<html><font face='Arial' size='10' color='black'>Please select a major before submiting");
+        "<html><font face='Arial' size='10' color='black'>Please fill fully the iformation for this student.");
     }
     else{
         try{
             stmt = conn.createStatement();
-            String stdName = name.getText();
+            double scoreMath = Double.valueOf(math.getText());
+            double scoreEnglish = Double.valueOf(english.getText());
+            double scoreSience = Double.valueOf(sience.getText());
+            double scoreHistory = Double.valueOf(history.getText());
             
-            String stdMajor = (String) major.getSelectedItem();
-            String stdPassword = password.getText();
-            String stdCity = city.getText();
-            String stdPhone = phone.getText();
-            int stdclass = Integer.parseInt(jclass.getText());
-            int stdID = Integer.parseInt(id.getText());
-            
-            String sql = "INSERT INTO STUDENT(stdName, stdPassword, stdMajor, stdCity, stdPhone, class, stdID) VALUES('"+stdName+"', '"+stdPassword+"', '"+stdMajor+"','"+stdCity+"', '"+stdPhone+"', '"+stdclass+"', '"+stdID+"')";
+            String sql = "INSERT INTO studentscore(scoreEnglish, scoreMath, scoreScience, scoreHistory) VALUES('"+scoreEnglish+"', '"+scoreMath+"', '"+scoreSience+"','"+scoreHistory+"')";
             
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data has successfuly inserted");
             
-            
+            setVisible(false);
+            addStudent as = new addStudent();
+            as.setVisible(true);
         }
         catch(Exception e){
            JOptionPane.showMessageDialog(null,e);
         }
-    } 
-    
-    addScore as = new addScore();
-    as.name.setText(name.getText());
-    as.setVisible(true);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -330,9 +298,9 @@ public class addStudent extends javax.swing.JFrame {
         object.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void mathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mathActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_mathActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -341,55 +309,49 @@ public class addStudent extends javax.swing.JFrame {
         object.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void majorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_majorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_majorActionPerformed
-
     private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_nameKeyReleased
 
-    private void passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyReleased
+    private void mathKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mathKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
-    }//GEN-LAST:event_passwordKeyReleased
+    }//GEN-LAST:event_mathKeyReleased
 
-    private void cityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cityKeyReleased
+    private void englishKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_englishKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
-    }//GEN-LAST:event_cityKeyReleased
+    }//GEN-LAST:event_englishKeyReleased
 
-    private void jclassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jclassKeyReleased
+    private void sienceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sienceKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
-    }//GEN-LAST:event_jclassKeyReleased
+    }//GEN-LAST:event_sienceKeyReleased
 
-    private void phoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyReleased
+    private void historyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_historyKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
-    }//GEN-LAST:event_phoneKeyReleased
-
-    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_idKeyReleased
+    }//GEN-LAST:event_historyKeyReleased
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_nameActionPerformed
+
+    private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_historyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,45 +370,42 @@ public class addStudent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addStudent().setVisible(true);
+                new addScore().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField city;
-    private javax.swing.JTextField id;
+    private javax.swing.JTextField english;
+    private javax.swing.JTextField history;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jclass;
-    private javax.swing.JComboBox<String> major;
-    private javax.swing.JTextField name;
-    private javax.swing.JTextField password;
-    private javax.swing.JTextField phone;
+    private javax.swing.JTextField math;
+    public javax.swing.JTextField name;
+    private javax.swing.JTextField sience;
     // End of variables declaration//GEN-END:variables
 }

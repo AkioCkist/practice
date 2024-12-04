@@ -158,6 +158,9 @@ public class searchAdmin extends javax.swing.JFrame {
             }
         });
         id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idKeyReleased(evt);
             }
@@ -491,6 +494,11 @@ public class searchAdmin extends javax.swing.JFrame {
     private void passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordKeyReleased
+
+    private void idKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_idKeyPressed
 
     /**
      * @param args the command line arguments
