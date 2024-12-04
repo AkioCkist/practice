@@ -304,16 +304,18 @@ public class addStudent extends javax.swing.JFrame {
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data has successfuly inserted");
             
-            
+            addScore as = new addScore();
+            as.name.setText(name.getText());
+            as.id.setText(id.getText());
+            as.setVisible(true);
+            setVisible(false);
+            dispose();
         }
         catch(Exception e){
            JOptionPane.showMessageDialog(null,e);
         }
     } 
     
-    addScore as = new addScore();
-    as.name.setText(name.getText());
-    as.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
