@@ -3,10 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package student_1;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 /**
  *
@@ -32,6 +35,24 @@ public class showAdmin extends javax.swing.JFrame {
             String sql = "SELECT * FROM admin";
             ResultSet res = stmt.executeQuery(sql);
             jTable1.setModel(DbUtils.resultSetToTableModel(res));
+            
+            JTableHeader header = jTable1.getTableHeader();
+            TableColumnModel columnModel = header.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("ID");
+            columnModel.getColumn(1).setHeaderValue("Mail");
+            columnModel.getColumn(2).setHeaderValue("Name");
+            columnModel.getColumn(3).setHeaderValue("Password");
+            
+            columnModel.getColumn(0).setPreferredWidth(100); 
+            columnModel.getColumn(1).setPreferredWidth(490);
+            columnModel.getColumn(2).setPreferredWidth(250);
+            columnModel.getColumn(3).setPreferredWidth(330);
+            
+            jTable1.setFont(new Font("Arial", Font.PLAIN, 16)); 
+            jTable1.setRowHeight(24);  
+            header.setFont(new Font("Arial", Font.PLAIN, 16));
+            jTable1.repaint();
+            header.repaint();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -51,6 +72,7 @@ public class showAdmin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -82,6 +104,13 @@ public class showAdmin extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Draw Graph");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,6 +121,8 @@ public class showAdmin extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(69, 69, 69)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -101,7 +132,9 @@ public class showAdmin extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -174,6 +207,10 @@ public class showAdmin extends javax.swing.JFrame {
         object.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,6 +248,7 @@ public class showAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
