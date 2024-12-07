@@ -189,17 +189,24 @@ public class login extends javax.swing.JFrame {
             String userEmail = mail.getText();
             String userPassword = password.getText();
             
-            String sql = "SELECT * FROM admin WHERE mail='"+userEmail+"' && password = '"+userPassword+"'";
-            
+            String sql = "SELECT 'admin' AS role FROM admin WHERE mail = '"+userEmail+"' AND password = '"+userPassword+"' " +
+             "UNION " +
+             "SELECT 'student' AS role FROM student WHERE stdMail = '"+userEmail+"' AND stdPassword = '"+userPassword+"'";
+           
             rs = stmt.executeQuery(sql);
-            if(rs.next()){
+            if (rs.next()) {
+            String role = rs.getString("role");
+            if ("admin".equals(role)) {
                 setVisible(false);
                 home object = new home();
                 object.setVisible(true);
+            } 
+            else if ("student".equals(role)) {
+                
             }
-            else{
-                JOptionPane.showMessageDialog(this, 
-        "<html><font face='Calibri' size='24' color='red'>What's wrong, bro? Can't even remember your own identity? |.___.| Ask yo GREAT GRANDMA again");
+            } else {
+                // Invalid login
+                System.out.println("Invalid credentials");
             }
             
         }

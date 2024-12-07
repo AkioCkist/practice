@@ -21,7 +21,7 @@ import org.jfree.data.xy.IntervalXYDataset;
  * @author AkioCkist
  */
 public class DrawScoreDistribution {
-    public static void main(String[] args) {
+    public static void aaaa() {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
             Statement stmt = conn.createStatement();
