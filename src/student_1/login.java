@@ -202,11 +202,18 @@ public class login extends javax.swing.JFrame {
                 object.setVisible(true);
             } 
             else if ("student".equals(role)) {
-                
+                String loginInfo = mail.getText();
+                //System.out.print(loginInfo);
+                viewStudentProfile info = new viewStudentProfile();  
+                info.setloginMail(loginInfo);
+                setVisible(false);
+                dashboardStudent object = new dashboardStudent();
+                object.setVisible(true);
             }
             } else {
                 // Invalid login
-                System.out.println("Invalid credentials");
+                JOptionPane.showMessageDialog(this, 
+        "<html><font face='Calibri' size='24' color='red'>What's wrong, bro? Can't even remember your own identity? |.___.| Ask yo GREAT GRANDMA again");
             }
             
         }
