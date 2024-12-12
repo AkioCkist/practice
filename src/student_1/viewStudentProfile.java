@@ -97,7 +97,7 @@ public void showRecord(){
         jTable1.repaint();
         jTable2.repaint();
         header.repaint();
-        header_2.repaint();
+        header_2.repaint();       
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -259,7 +259,7 @@ public void showRecord(){
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        home object = new home();
+        dashboardStudent object = new dashboardStudent();
         object.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

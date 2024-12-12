@@ -191,7 +191,9 @@ public class login extends javax.swing.JFrame {
             
             String sql = "SELECT 'admin' AS role FROM admin WHERE mail = '"+userEmail+"' AND password = '"+userPassword+"' " +
              "UNION " +
-             "SELECT 'student' AS role FROM student WHERE stdMail = '"+userEmail+"' AND stdPassword = '"+userPassword+"'";
+             "SELECT 'student' AS role FROM student WHERE stdMail = '"+userEmail+"' AND stdPassword = '"+userPassword+"' " +
+             "UNION " +
+             "SELECT 'staff' AS role FROM staff WHERE staffMail = '"+userEmail+"' AND staffPassword = '"+userPassword+"'";
            
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
@@ -203,11 +205,19 @@ public class login extends javax.swing.JFrame {
             } 
             else if ("student".equals(role)) {
                 String loginInfo = mail.getText();
-                //System.out.print(loginInfo);
                 viewStudentProfile info = new viewStudentProfile();  
                 info.setloginMail(loginInfo);
+                
+                courseRegister1 cr = new courseRegister1();  
+                cr.setMail(loginInfo);
                 setVisible(false);
+                
                 dashboardStudent object = new dashboardStudent();
+                object.setVisible(true);
+            }
+            else if ("staff".equals(role)){
+                setVisible(false);
+                dashboardStaff object = new dashboardStaff();
                 object.setVisible(true);
             }
             } else {

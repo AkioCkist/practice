@@ -51,6 +51,7 @@ public class showStudent extends javax.swing.JFrame {
         columnModel.getColumn(5).setHeaderValue("Phone");
         columnModel.getColumn(6).setHeaderValue("City");
         columnModel.getColumn(7).setHeaderValue("Class");
+        columnModel.getColumn(8).setHeaderValue("Credit Owned");
         
         columnModel.getColumn(0).setPreferredWidth(100); 
         columnModel.getColumn(1).setPreferredWidth(200);
@@ -59,7 +60,8 @@ public class showStudent extends javax.swing.JFrame {
         columnModel.getColumn(4).setPreferredWidth(300);
         columnModel.getColumn(5).setPreferredWidth(150);
         columnModel.getColumn(6).setPreferredWidth(150);
-        columnModel.getColumn(7).setPreferredWidth(150);
+        columnModel.getColumn(7).setPreferredWidth(130);
+        columnModel.getColumn(8).setPreferredWidth(180);
                
         jTable1.setFont(new Font("Arial", Font.PLAIN, 16)); 
         jTable1.setRowHeight(24); 
@@ -236,7 +238,7 @@ public class showStudent extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        home object = new home();
+        dashboardStaff object = new dashboardStaff();
         object.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

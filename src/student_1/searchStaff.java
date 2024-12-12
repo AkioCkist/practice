@@ -15,7 +15,7 @@ import java.security.SecureRandom;
  *
  * @author AkioCkist
  */
-public class searchAdmin extends javax.swing.JFrame {
+public class searchStaff extends javax.swing.JFrame {
 
     /**
      * Creates new form searchAdmin
@@ -23,8 +23,8 @@ public class searchAdmin extends javax.swing.JFrame {
     Connection conn = null;
     java.sql.Statement stmt = null;
     ResultSet rs = null;
-    public searchAdmin() {
-        super("Search Admin");
+    public searchStaff() {
+        super("Search Staff");
         initComponents();
         conn = databaseConnection.connection(); 
     }
@@ -43,7 +43,7 @@ public class searchAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
-        mail = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
         update = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         password = new javax.swing.JTextField();
@@ -51,7 +51,7 @@ public class searchAdmin extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
+        mail = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -60,14 +60,14 @@ public class searchAdmin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search & Update Admin List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search & Update Staff List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(653, 800));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel1.setText("Name:");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Email:");
+        jLabel2.setText("ID:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel3.setText("Password:");
@@ -85,16 +85,16 @@ public class searchAdmin extends javax.swing.JFrame {
             }
         });
 
-        mail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        mail.setEnabled(false);
-        mail.addActionListener(new java.awt.event.ActionListener() {
+        id.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        id.setEnabled(false);
+        id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mailActionPerformed(evt);
+                idActionPerformed(evt);
             }
         });
-        mail.addKeyListener(new java.awt.event.KeyAdapter() {
+        id.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                mailKeyReleased(evt);
+                idKeyReleased(evt);
             }
         });
 
@@ -149,20 +149,20 @@ public class searchAdmin extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel7.setText("ID:");
+        jLabel7.setText("Mail:");
 
-        id.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        id.addActionListener(new java.awt.event.ActionListener() {
+        mail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                mailActionPerformed(evt);
             }
         });
-        id.addKeyListener(new java.awt.event.KeyAdapter() {
+        mail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                idKeyPressed(evt);
+                mailKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                idKeyReleased(evt);
+                mailKeyReleased(evt);
             }
         });
 
@@ -177,7 +177,7 @@ public class searchAdmin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(154, Short.MAX_VALUE)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(30, 30, 30)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -189,7 +189,7 @@ public class searchAdmin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(32, 32, 32)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(32, Short.MAX_VALUE)))
         );
 
@@ -211,7 +211,7 @@ public class searchAdmin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,7 +238,7 @@ public class searchAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -318,21 +318,21 @@ public class searchAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
 
-    private void mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailActionPerformed
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mailActionPerformed
+    }//GEN-LAST:event_idActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
         try{
             stmt = conn.createStatement();
-            int adminID = Integer.parseInt(id.getText());
-            String adminName = name.getText();
-            String adminMail = mail.getText();
-            String adminPassword = password.getText();
+            int staffID = Integer.parseInt(mail.getText());
+            String staffName = name.getText();
+            String staffMail = id.getText();
+            String staffPassword = password.getText();
             
 
-            String sql = "UPDATE admin SET mail = '"+adminMail+"', name = '"+adminName+"', password = '"+adminPassword+"', adminID = '"+adminID+"' WHERE adminID = '"+adminID+"'";
+            String sql = "UPDATE staff SET staffMail = '"+staffMail+"', staffName = '"+staffName+"', staffPassword = '"+staffPassword+"', staffID = '"+staffID+"' WHERE staffID = '"+staffID+"'";
 
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data has successfuly updated");
@@ -359,20 +359,20 @@ public class searchAdmin extends javax.swing.JFrame {
         jButton4.setEnabled(true);
 
         name.setEnabled(true);
-        mail.setEnabled(true);
+        id.setEnabled(true);
         password.setEnabled(true);
 
         try{
             stmt = conn.createStatement();
-            int adminID = Integer.parseInt(id.getText());
-            String sql = "SELECT * FROM admin WHERE adminID = '"+adminID+"'";
+            String staffMail = mail.getText();
+            String sql = "SELECT * FROM staff WHERE staffMail = '"+staffMail+"'";
 
             rs = stmt.executeQuery(sql);
 
             if(rs.next()){
-                name.setText(rs.getString("name"));
-                mail.setText(rs.getString("mail"));
-                password.setText(rs.getString("password"));
+                name.setText(rs.getString("staffName"));
+                id.setText(rs.getString("staffID"));
+                password.setText(rs.getString("staffPassword"));
             }
             else{
                 JOptionPane.showMessageDialog(null, "<html><font face='Arial' size='8' color='black'>Record Not Found.");
@@ -438,12 +438,12 @@ public class searchAdmin extends javax.swing.JFrame {
             // Perform the delete operation
             try{
                 stmt = conn.createStatement();
-                int adminID = Integer.parseInt(id.getText());
+                int adminID = Integer.parseInt(mail.getText());
                 String sql = "DELETE FROM admin WHERE adminID = '"+adminID+"'";
                 stmt.executeUpdate(sql);
 
                 setVisible(false);
-                showAdmin object = new showAdmin();
+                showStaff object = new showStaff();
                 object.setVisible(true);
             }
             catch(Exception e){
@@ -472,33 +472,33 @@ public class searchAdmin extends javax.swing.JFrame {
         return sb.toString();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_mailActionPerformed
 
-    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
+    private void mailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyReleased
         // TODO add your handling code here:
-        if(id.getText().length() >= 1){
+        if(mail.getText().length() >= 1){
             jButton3.setEnabled(true);
         }
-    }//GEN-LAST:event_idKeyReleased
+    }//GEN-LAST:event_mailKeyReleased
 
     private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_nameKeyReleased
 
-    private void mailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyReleased
+    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
         // TODO add your handling code here
-    }//GEN-LAST:event_mailKeyReleased
+    }//GEN-LAST:event_idKeyReleased
 
     private void passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordKeyReleased
 
-    private void idKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyPressed
+    private void mailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyPressed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_idKeyPressed
+    }//GEN-LAST:event_mailKeyPressed
 
     /**
      * @param args the command line arguments
@@ -517,20 +517,21 @@ public class searchAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(searchAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(searchAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(searchAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(searchAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new searchAdmin().setVisible(true);
+                new searchStaff().setVisible(true);
             }
         });
     }
