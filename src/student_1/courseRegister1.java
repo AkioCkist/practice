@@ -79,8 +79,9 @@ public class courseRegister1 extends javax.swing.JFrame {
     public void showRecord(){
         try{
             stmt = conn.createStatement();
-            String sql = "SELECT * EXCEPT (courseMail) FROM course where courseMail = '"+loginMail+"'";
+            String sql = "SELECT * FROM course where courseMail = '"+loginMail+"'";
             ResultSet res = stmt.executeQuery(sql);
+                    
             jTable1.setModel(DbUtils.resultSetToTableModel(res));
             jTable1.getColumnModel().getColumn(0).setCellRenderer(new BooleanRenderer());
             jTable1.getColumnModel().getColumn(0).setCellEditor((TableCellEditor) new BooleanEditor());

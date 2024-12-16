@@ -4,6 +4,11 @@
  */
 package student_1;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author AkioCkist
@@ -13,8 +18,36 @@ public class dashboardStaff extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
+    private static final String CONFIG_FILE = "permissions.txt";
     public dashboardStaff() {
         initComponents();
+        boolean[] states = loadPermissions();
+        }
+    private boolean[] loadPermissions() {
+        boolean[] states = {false, false};
+        File file = new File(CONFIG_FILE);
+
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                states[0] = Boolean.parseBoolean(reader.readLine());
+                states[1] = Boolean.parseBoolean(reader.readLine());
+                if (states[0]) {
+                    jButton1.setEnabled(true);
+                } else {
+                    jButton1.setEnabled(false);
+                }
+
+                if (states[1]) {
+                    jButton4.setEnabled(true);
+                } else {
+                    jButton4.setEnabled(false);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return states;
     }
 
     /**
@@ -64,6 +97,7 @@ public class dashboardStaff extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -92,8 +126,9 @@ public class dashboardStaff extends javax.swing.JFrame {
         jLabel4.setText("Show Student");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\addAdmin.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\online-course_1.png")); // NOI18N
         jButton4.setContentAreaFilled(false);
+        jButton4.setEnabled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -101,7 +136,7 @@ public class dashboardStaff extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel5.setText("Add Admin");
+        jLabel5.setText("Add Course");
 
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\configuration1.png")); // NOI18N
         jButton5.setContentAreaFilled(false);
@@ -153,7 +188,7 @@ public class dashboardStaff extends javax.swing.JFrame {
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel2))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
+                        .addGap(87, 87, 87)
                         .addComponent(jLabel5)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -297,6 +332,8 @@ public class dashboardStaff extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        setting ckbox = new setting();
+        jButton1.setEnabled(ckbox.allowAddStudent.isSelected());
         setVisible(false);
         addStudent object = new addStudent();
         object.setVisible(true);
@@ -329,7 +366,9 @@ public class dashboardStaff extends javax.swing.JFrame {
         searchStaff object = new searchStaff();
         object.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    public void setButtonEnabled(boolean enabled) {
+        jButton1.setEnabled(enabled);
+    }
     /**
      * @param args the command line arguments
      */
