@@ -326,13 +326,12 @@ public class searchStaff extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             stmt = conn.createStatement();
-            int staffID = Integer.parseInt(mail.getText());
+            int staffID = Integer.parseInt(id.getText());
             String staffName = name.getText();
-            String staffMail = id.getText();
+            String staffMail = mail.getText();
             String staffPassword = password.getText();
             
-
-            String sql = "UPDATE staff SET staffMail = '"+staffMail+"', staffName = '"+staffName+"', staffPassword = '"+staffPassword+"', staffID = '"+staffID+"' WHERE staffID = '"+staffID+"'";
+            String sql = "UPDATE staff SET staffMail = '"+staffMail+"',staffName = '"+staffName+"', staffPassword = '"+staffPassword+"', staffID = '"+staffID+"' WHERE staffMail = '"+staffMail+"'";
 
             stmt.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Data has successfuly updated");

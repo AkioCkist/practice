@@ -1,3 +1,3 @@
-staff@vnuk.edu.vn
+admin@vnuk.edu.vn
 123
 true
