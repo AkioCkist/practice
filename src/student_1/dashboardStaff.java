@@ -33,14 +33,18 @@ public class dashboardStaff extends javax.swing.JFrame {
                 states[1] = Boolean.parseBoolean(reader.readLine());
                 if (states[0]) {
                     jButton1.setEnabled(true);
+                    jButton2.setEnabled(true);
                 } else {
                     jButton1.setEnabled(false);
+                    jButton2.setEnabled(false);
                 }
 
                 if (states[1]) {
                     jButton4.setEnabled(true);
+                    jButton5.setEnabled(true);
                 } else {
                     jButton4.setEnabled(false);
+                    jButton5.setEnabled(false);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -109,6 +113,7 @@ public class dashboardStaff extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -138,8 +143,9 @@ public class dashboardStaff extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel5.setText("Add Course");
 
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\configuration1.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\stamp.png")); // NOI18N
         jButton5.setContentAreaFilled(false);
+        jButton5.setEnabled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -147,7 +153,7 @@ public class dashboardStaff extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel6.setText("Search & Update Admin");
+        jLabel6.setText("Course Approval");
 
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\project Image\\showAdmin.png")); // NOI18N
         jButton6.setContentAreaFilled(false);
@@ -198,13 +204,13 @@ public class dashboardStaff extends javax.swing.JFrame {
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton5)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jButton5))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
+                        .addComponent(jLabel3)
                         .addGap(176, 176, 176)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -349,7 +355,7 @@ public class dashboardStaff extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        addStaff object = new addStaff();
+        courseRegister object = new courseRegister();
         object.setVisible(true); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -363,7 +369,7 @@ public class dashboardStaff extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        searchStaff object = new searchStaff();
+        courseApproval object = new courseApproval();
         object.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
     public void setButtonEnabled(boolean enabled) {

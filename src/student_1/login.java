@@ -208,8 +208,8 @@ public class login extends javax.swing.JFrame {
                 viewStudentProfile info = new viewStudentProfile();  
                 info.setloginMail(loginInfo);
                 
-                courseRegister1 cr = new courseRegister1();  
-                cr.setMail(loginInfo);
+                courseRegister cr = new courseRegister();  
+                cr.setloginMail(loginInfo);
                 setVisible(false);
                 
                 dashboardStudent object = new dashboardStudent();

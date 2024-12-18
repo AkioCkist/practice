@@ -99,7 +99,7 @@ public class setting extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         allowAddStudent.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        allowAddStudent.setText("Allow staff to add students");
+        allowAddStudent.setText("Allow staff to add/search/remove students");
         allowAddStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allowAddStudentActionPerformed(evt);
@@ -107,7 +107,7 @@ public class setting extends javax.swing.JFrame {
         });
 
         allowAddCourse.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        allowAddCourse.setText("Allow staff to add courses");
+        allowAddCourse.setText("Allow staff to add/search/remove courses");
         allowAddCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allowAddCourseActionPerformed(evt);
@@ -119,20 +119,20 @@ public class setting extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(196, 196, 196)
+                .addGap(134, 134, 134)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(allowAddStudent)
-                    .addComponent(allowAddCourse))
-                .addContainerGap(197, Short.MAX_VALUE))
+                    .addComponent(allowAddCourse)
+                    .addComponent(allowAddStudent))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(113, 113, 113)
                 .addComponent(allowAddStudent)
-                .addGap(52, 52, 52)
+                .addGap(55, 55, 55)
                 .addComponent(allowAddCourse)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
