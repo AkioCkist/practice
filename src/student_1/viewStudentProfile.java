@@ -63,30 +63,14 @@ public void showRecord(){
         columnModel.getColumn(7).setPreferredWidth(150);
         
         //score table
-        String sql_2 = "SELECT scoreMath, scoreEnglish, scoreScience, scoreHistory, highestScore, lowestScore, GPA, performanceStatus FROM studentscore WHERE scoreMail = '" + stdMail + "'";
+        String sql_2 = "SELECT * FROM coursescore WHERE courseMail = '" + stdMail + "'";
         ResultSet res_2 = stmt.executeQuery(sql_2);
         jTable2.setModel(DbUtils.resultSetToTableModel(res_2));
         
         JTableHeader header_2 = jTable2.getTableHeader();
         TableColumnModel columnModel_2 = header_2.getColumnModel();
-        columnModel_2.getColumn(0).setHeaderValue("Math");
-        columnModel_2.getColumn(1).setHeaderValue("English");
-        columnModel_2.getColumn(2).setHeaderValue("Sience");
-        columnModel_2.getColumn(3).setHeaderValue("History");
-        columnModel_2.getColumn(4).setHeaderValue("Highest Score");
-        columnModel_2.getColumn(5).setHeaderValue("Lowest Score");
-        columnModel_2.getColumn(6).setHeaderValue("GPA");
-        columnModel_2.getColumn(7).setHeaderValue("Perfomance Status");
-        
-        columnModel_2.getColumn(0).setPreferredWidth(100); 
-        columnModel_2.getColumn(1).setPreferredWidth(100);
-        columnModel_2.getColumn(2).setPreferredWidth(100);
-        columnModel_2.getColumn(3).setPreferredWidth(100);
-        columnModel_2.getColumn(4).setPreferredWidth(100);
-        columnModel_2.getColumn(5).setPreferredWidth(100);
-        columnModel_2.getColumn(6).setPreferredWidth(100);
-        columnModel_2.getColumn(7).setPreferredWidth(140);
                
+        columnModel_2.getColumn(0).setPreferredWidth(150);              
         jTable1.setFont(new Font("Arial", Font.PLAIN, 16));
         jTable2.setFont(new Font("Arial", Font.PLAIN, 16)); 
         jTable1.setRowHeight(24);
