@@ -95,12 +95,46 @@ private void approveSelected() {
                 String column = (String) jTable1.getValueAt(i, 3);
                 boolean value = (Boolean) jTable1.getValueAt(i, 4);
 
-                // Update main table
+                // Update the `course` table
                 String updateQuery = "UPDATE course SET " + column + " = ? WHERE courseMail = ?";
                 PreparedStatement updateStmt = conn.prepareStatement(updateQuery);
                 updateStmt.setBoolean(1, value);
                 updateStmt.setString(2, courseMail);
                 updateStmt.executeUpdate();
+
+                // Check if the `courseMail` exists in `coursescore`
+                String checkRowQuery = "SELECT COUNT(*) FROM coursescore WHERE courseMail = ?";
+                PreparedStatement checkRowStmt = conn.prepareStatement(checkRowQuery);
+                checkRowStmt.setString(1, courseMail);
+                ResultSet rs = checkRowStmt.executeQuery();
+                boolean rowExists = false;
+                if (rs.next() && rs.getInt(1) > 0) {
+                    rowExists = true;
+                }
+
+                if (!rowExists) {
+                    // Insert a new row with default NULL values for the courseMail
+                    String insertRowQuery = "INSERT INTO coursescore (courseMail) VALUES (?)";
+                    PreparedStatement insertRowStmt = conn.prepareStatement(insertRowQuery);
+                    insertRowStmt.setString(1, courseMail);
+                    insertRowStmt.executeUpdate();
+                }
+
+                // Ensure column exists in `coursescore` table
+                String addColumnQuery = "ALTER TABLE coursescore ADD COLUMN IF NOT EXISTS " + column + " DOUBLE DEFAULT NULL";
+                PreparedStatement addColumnStmt = conn.prepareStatement(addColumnQuery);
+                addColumnStmt.executeUpdate();
+
+                // Update the column value in `coursescore`
+                String scoreUpdateQuery = "UPDATE coursescore SET " + column + " = ? WHERE courseMail = ?";
+                PreparedStatement scoreUpdateStmt = conn.prepareStatement(scoreUpdateQuery);
+                if (value) {
+                    scoreUpdateStmt.setDouble(1, 0.0); // Set to 0.0 if updated to 1
+                } else {
+                    scoreUpdateStmt.setNull(1, java.sql.Types.DOUBLE); // Set to NULL if updated to 0
+                }
+                scoreUpdateStmt.setString(2, courseMail);
+                scoreUpdateStmt.executeUpdate();
 
                 // Delete row from approval table
                 deleteApprovalRow(id);
@@ -113,6 +147,7 @@ private void approveSelected() {
         JOptionPane.showMessageDialog(null, "Error approving requests: " + ex.getMessage());
     }
 }
+
 
 private void rejectSelected() {
     try {

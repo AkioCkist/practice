@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author AkioCkist
  */
-public class addScore extends javax.swing.JFrame {
+public class manageScore extends javax.swing.JFrame {
 
     /**
      * Creates new form addStudent
@@ -21,7 +21,7 @@ public class addScore extends javax.swing.JFrame {
     java.sql.Statement stmt = null;
     ResultSet rs = null;
     
-    public addScore() {
+    public manageScore() {
         super("Add Student");
         initComponents();
         conn = databaseConnection.connection();
@@ -275,63 +275,6 @@ public class addScore extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    double valueMath = Double.valueOf(math.getText());
-    double valueEnglish = Double.valueOf(english.getText());
-    double valueSience = Double.valueOf(sience.getText());
-    double valueHistory = Double.valueOf(history.getText());
-    if(Double.toString(valueMath).length() == 0 && Double.toString(valueEnglish).length() == 0 && Double.toString(valueSience).length() == 0 && Double.toString(valueHistory).length() == 0){
-        JOptionPane.showMessageDialog(this, 
-        "<html><font face='Arial' size='10' color='black'>Please fill fully the iformation for this student.");
-    }
-    else{
-        try{       
-            stmt = conn.createStatement();
-            int scoreID = Integer.parseInt(id.getText());
-            double scoreMath = Double.valueOf(math.getText());
-            double scoreEnglish = Double.valueOf(english.getText());
-            double scoreSience = Double.valueOf(sience.getText());
-            double scoreHistory = Double.valueOf(history.getText());
-            
-            //add score
-            String sql = "UPDATE studentscore " +
-             "SET scoreEnglish = '" + scoreEnglish + "', " +
-             "scoreMath = '" + scoreMath + "', " +
-             "scoreScience = '" + scoreSience + "', " +
-             "scoreHistory = '" + scoreHistory + "' " +
-             "WHERE scoreID = '" + scoreID + "'";
-
-            //calculate some stuff
-            
-            String calculate = "UPDATE studentscore " +
-             "SET " +
-             "   highestScore = GREATEST(scoreEnglish, scoreMath, scoreScience, scoreHistory), " +
-             "   lowestScore = LEAST(scoreEnglish, scoreMath, scoreScience, scoreHistory), " +
-             "   GPA = ROUND((scoreEnglish + scoreMath + scoreScience + scoreHistory) / 4, 1), " +
-             "   performanceStatus = CASE " +
-             "       WHEN GPA BETWEEN 0.0 AND 3.0 THEN 'D' " +
-             "       WHEN GPA BETWEEN 3.0 AND 6.0 THEN 'C' " +
-             "       WHEN GPA BETWEEN 6.1 AND 8.4 THEN 'B' " +
-             "       WHEN GPA BETWEEN 8.5 AND 9.4 THEN 'A' " +
-             "       WHEN GPA BETWEEN 9.5 AND 10.0 THEN 'A+' " +
-             "       ELSE 'Unknown' " +
-             "   END";
- 
-            stmt.executeUpdate(sql);
-            stmt.executeUpdate(calculate);
-            JOptionPane.showMessageDialog(null,"Data has successfuly inserted");
-            
-            setVisible(false);
-            addStudent as = new addStudent();
-            as.setVisible(true);
-        }
-        catch(Exception e){
-           JOptionPane.showMessageDialog(null,e);
-        }
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -346,16 +289,69 @@ public class addScore extends javax.swing.JFrame {
         object.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void mathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mathActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mathActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         home object = new home();
         object.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        double valueMath = Double.valueOf(math.getText());
+        double valueEnglish = Double.valueOf(english.getText());
+        double valueSience = Double.valueOf(sience.getText());
+        double valueHistory = Double.valueOf(history.getText());
+        if(Double.toString(valueMath).length() == 0 && Double.toString(valueEnglish).length() == 0 && Double.toString(valueSience).length() == 0 && Double.toString(valueHistory).length() == 0){
+            JOptionPane.showMessageDialog(this,
+                "<html><font face='Arial' size='10' color='black'>Please fill fully the iformation for this student.");
+        }
+        else{
+            try{
+                stmt = conn.createStatement();
+                int scoreID = Integer.parseInt(id.getText());
+                double scoreMath = Double.valueOf(math.getText());
+                double scoreEnglish = Double.valueOf(english.getText());
+                double scoreSience = Double.valueOf(sience.getText());
+                double scoreHistory = Double.valueOf(history.getText());
+
+                //add score
+                String sql = "UPDATE studentscore " +
+                "SET scoreEnglish = '" + scoreEnglish + "', " +
+                "scoreMath = '" + scoreMath + "', " +
+                "scoreScience = '" + scoreSience + "', " +
+                "scoreHistory = '" + scoreHistory + "' " +
+                "WHERE scoreID = '" + scoreID + "'";
+
+                //calculate some stuff
+
+                String calculate = "UPDATE studentscore " +
+                "SET " +
+                "   highestScore = GREATEST(scoreEnglish, scoreMath, scoreScience, scoreHistory), " +
+                "   lowestScore = LEAST(scoreEnglish, scoreMath, scoreScience, scoreHistory), " +
+                "   GPA = ROUND((scoreEnglish + scoreMath + scoreScience + scoreHistory) / 4, 1), " +
+                "   performanceStatus = CASE " +
+                "       WHEN GPA BETWEEN 0.0 AND 3.0 THEN 'D' " +
+                "       WHEN GPA BETWEEN 3.0 AND 6.0 THEN 'C' " +
+                "       WHEN GPA BETWEEN 6.1 AND 8.4 THEN 'B' " +
+                "       WHEN GPA BETWEEN 8.5 AND 9.4 THEN 'A' " +
+                "       WHEN GPA BETWEEN 9.5 AND 10.0 THEN 'A+' " +
+                "       ELSE 'Unknown' " +
+                "   END";
+
+                stmt.executeUpdate(sql);
+                stmt.executeUpdate(calculate);
+                JOptionPane.showMessageDialog(null,"Data has successfuly inserted");
+
+                setVisible(false);
+                addStudent as = new addStudent();
+                as.setVisible(true);
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
         // TODO add your handling code here:
@@ -364,26 +360,10 @@ public class addScore extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nameKeyReleased
 
-    private void mathKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mathKeyReleased
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_mathKeyReleased
 
-    private void englishKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_englishKeyReleased
-        // TODO add your handling code here:
-        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_englishKeyReleased
-
-    private void sienceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sienceKeyReleased
-        // TODO add your handling code here:
-        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_sienceKeyReleased
+    }//GEN-LAST:event_nameActionPerformed
 
     private void historyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_historyKeyReleased
         // TODO add your handling code here:
@@ -392,22 +372,42 @@ public class addScore extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_historyKeyReleased
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_nameActionPerformed
-
     private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_historyActionPerformed
+
+    private void sienceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sienceKeyReleased
+        // TODO add your handling code here:
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_sienceKeyReleased
+
+    private void englishKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_englishKeyReleased
+        // TODO add your handling code here:
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_englishKeyReleased
+
+    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idKeyReleased
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
-    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
+    private void mathKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mathKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_idKeyReleased
+        if(math.getText().length() >= 1 && sience.getText().length() >= 1 && english.getText().length() >= 1&& sience.getText().length() >= 1&& history.getText().length() >= 1){
+            jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_mathKeyReleased
+
+    private void mathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mathActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mathActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,21 +426,23 @@ public class addScore extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manageScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manageScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manageScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manageScore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addScore().setVisible(true);
+                new manageScore().setVisible(true);
             }
         });
     }
@@ -448,7 +450,7 @@ public class addScore extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField english;
     private javax.swing.JTextField history;
-    public javax.swing.JTextField id;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -463,7 +465,7 @@ public class addScore extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField math;
-    public javax.swing.JTextField name;
+    private javax.swing.JTextField name;
     private javax.swing.JTextField sience;
     // End of variables declaration//GEN-END:variables
 }

@@ -326,14 +326,7 @@ public class addStudent extends javax.swing.JFrame {
             String sql = "INSERT INTO STUDENT(stdName, stdMail, stdPassword, stdMajor, stdCity, stdPhone, class, stdID) VALUES('"+stdName+"', '"+stdMail+"', '"+stdPassword+"', '"+stdMajor+"','"+stdCity+"', '"+stdPhone+"', '"+stdclass+"', '"+stdID+"')";
             
             stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"Data has successfuly inserted");
-            
-            addScore as = new addScore();
-            as.name.setText(name.getText());
-            as.id.setText(id.getText());
-            as.setVisible(true);
-            setVisible(false);
-            dispose();
+            JOptionPane.showMessageDialog(null,"Data has successfuly inserted");        
         }
         catch(Exception e){
            JOptionPane.showMessageDialog(null,e);
