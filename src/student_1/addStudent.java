@@ -4,10 +4,13 @@
  */
 package student_1;
 
+import java.sql.PreparedStatement;
 import com.mysql.cj.xdevapi.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import java.sql.*;
+
 /**
  *
  * @author AkioCkist
@@ -20,13 +23,57 @@ public class addStudent extends javax.swing.JFrame {
     Connection conn = null;
     java.sql.Statement stmt = null;
     ResultSet rs = null;
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/student";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = ""; // Replace with your MySQL password
     
     public addStudent() {
         super("Add Student");
         initComponents();
         conn = databaseConnection.connection();
     }
+    
+    private static void insertCourseScore(String courseMail) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            // Fetch the column names dynamically
+            DatabaseMetaData metaData = connection.getMetaData();
+            ResultSet resultSet = metaData.getColumns(null, null, "course", null);
 
+            StringBuilder columnNames = new StringBuilder("courseMail");
+            StringBuilder placeholders = new StringBuilder("?");
+
+            while (resultSet.next()) {
+                String columnName = resultSet.getString("COLUMN_NAME");
+                if (!columnName.equals("courseMail")) {
+                    columnNames.append(", ").append(columnName);
+                    placeholders.append(", ?");
+                }
+            }
+
+            // Prepare the SQL statement
+            String sql = "INSERT INTO course (" + columnNames + ") VALUES (" + placeholders + ")";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, courseMail);
+
+                // Set the default value (0) for all other columns
+                int parameterIndex = 2;
+                resultSet.beforeFirst();
+                while (resultSet.next()) {
+                    String columnName = resultSet.getString("COLUMN_NAME");
+                    if (!columnName.equals("courseMail")) {
+                        preparedStatement.setInt(parameterIndex++, 0);
+                    }
+                }
+
+                // Execute the insertion
+                preparedStatement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Record inserted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error inserting record: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,8 +98,6 @@ public class addStudent extends javax.swing.JFrame {
         major = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         mail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -137,7 +182,7 @@ public class addStudent extends javax.swing.JFrame {
         });
 
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\AkioCkist\\Downloads\\plus_4315609.png")); // NOI18N
-        jButton1.setText("Add Score");
+        jButton1.setText("Add Student");
         jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,16 +197,6 @@ public class addStudent extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        id.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        id.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                idKeyReleased(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel7.setText("ID:");
 
         mail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mail.addActionListener(new java.awt.event.ActionListener() {
@@ -193,8 +228,7 @@ public class addStudent extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel8)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4))
                         .addGap(0, 51, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -204,7 +238,6 @@ public class addStudent extends javax.swing.JFrame {
                     .addComponent(jclass, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(phone, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(city)
-                    .addComponent(id, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mail))
                 .addGap(89, 89, 89))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -245,11 +278,7 @@ public class addStudent extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(69, 69, 69)
+                .addGap(158, 158, 158)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,19 +343,19 @@ public class addStudent extends javax.swing.JFrame {
         try{
             stmt = conn.createStatement();
             String stdName = name.getText();
-            
             String stdMajor = (String) major.getSelectedItem();
             String stdMail = mail.getText();
             String stdPassword = password.getText();
             String stdCity = city.getText();
             String stdPhone = phone.getText();
             int stdclass = Integer.parseInt(jclass.getText());
-            int stdID = Integer.parseInt(id.getText());
             
-            String sql = "INSERT INTO STUDENT(stdName, stdMail, stdPassword, stdMajor, stdCity, stdPhone, class, stdID) VALUES('"+stdName+"', '"+stdMail+"', '"+stdPassword+"', '"+stdMajor+"','"+stdCity+"', '"+stdPhone+"', '"+stdclass+"', '"+stdID+"')";
+            String sql = "INSERT INTO student(stdName, stdMail, stdPassword, stdMajor, stdCity, stdPhone, class) VALUES('"+stdName+"', '"+stdMail+"', '"+stdPassword+"', '"+stdMajor+"','"+stdCity+"', '"+stdPhone+"', '"+stdclass+"')";
             
             stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"Data has successfuly inserted");        
+            JOptionPane.showMessageDialog(null,"Data has successfuly inserted"); 
+            
+            insertCourseScore(stdMail);
         }
         catch(Exception e){
            JOptionPane.showMessageDialog(null,e);
@@ -366,45 +395,38 @@ public class addStudent extends javax.swing.JFrame {
 
     private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_nameKeyReleased
 
     private void passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_passwordKeyReleased
 
     private void cityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cityKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_cityKeyReleased
 
     private void jclassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jclassKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_jclassKeyReleased
 
     private void phoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyReleased
         // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
+        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1){
             jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_phoneKeyReleased
-
-    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
-        // TODO add your handling code here:
-        if(name.getText().length() >= 1 && password.getText().length() >= 1 && jclass.getText().length() >= 1 && phone.getText().length() >= 1&& id.getText().length() >= 1){
-            jButton1.setEnabled(true);
-        }
-    }//GEN-LAST:event_idKeyReleased
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
@@ -455,7 +477,6 @@ public class addStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField city;
-    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -464,7 +485,6 @@ public class addStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

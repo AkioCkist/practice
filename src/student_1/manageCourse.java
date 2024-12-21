@@ -136,7 +136,9 @@ private void renameCourseColumn() {
         // Rename the column in the table
         String alterQuery = "ALTER TABLE course CHANGE `" + oldCourseName + "` `" + newCourseName + "` TINYINT(1)";
         stmt.executeUpdate(alterQuery);
-
+        
+        String alterQuery_1 = "ALTER TABLE coursescore CHANGE `" + oldCourseName + "` `" + newCourseName + "` TINYINT(1)";
+        stmt.executeUpdate(alterQuery_1);
         JOptionPane.showMessageDialog(this, "Course '" + oldCourseName + "' renamed to '" + newCourseName + "' successfully!");
         loadCourses();
     } catch (SQLException e) {

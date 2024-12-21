@@ -437,8 +437,8 @@ public class searchStaff extends javax.swing.JFrame {
             // Perform the delete operation
             try{
                 stmt = conn.createStatement();
-                int adminID = Integer.parseInt(mail.getText());
-                String sql = "DELETE FROM admin WHERE adminID = '"+adminID+"'";
+                String staffMail = mail.getText();
+                String sql = "DELETE FROM staff WHERE staffMail = '"+staffMail+"'";
                 stmt.executeUpdate(sql);
 
                 setVisible(false);

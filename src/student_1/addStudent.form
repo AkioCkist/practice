@@ -117,7 +117,6 @@
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
                       </Group>
@@ -130,7 +129,6 @@
                       <Component id="jclass" alignment="0" max="32767" attributes="0"/>
                       <Component id="phone" alignment="0" max="32767" attributes="0"/>
                       <Component id="city" alignment="1" max="32767" attributes="0"/>
-                      <Component id="id" alignment="0" max="32767" attributes="0"/>
                       <Component id="mail" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
@@ -182,12 +180,7 @@
                       <Component id="phone" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="id" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton1" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="jButton2" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -331,7 +324,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\AkioCkist\Downloads\plus_4315609.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Add Score"/>
+            <Property name="text" type="java.lang.String" value="Add Student"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -348,24 +341,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="id">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="idKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="16" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="ID:"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="mail">
           <Properties>

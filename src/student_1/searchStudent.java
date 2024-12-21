@@ -60,7 +60,7 @@ public class searchStudent extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
+        mail = new javax.swing.JTextField();
         major = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -160,17 +160,17 @@ public class searchStudent extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel7.setText("ID:");
+        jLabel7.setText("Mail:");
 
-        id.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        id.addActionListener(new java.awt.event.ActionListener() {
+        mail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                mailActionPerformed(evt);
             }
         });
-        id.addKeyListener(new java.awt.event.KeyAdapter() {
+        mail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                idKeyReleased(evt);
+                mailKeyReleased(evt);
             }
         });
 
@@ -182,7 +182,7 @@ public class searchStudent extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
         );
         jPanel2Layout.setVerticalGroup(
@@ -191,7 +191,7 @@ public class searchStudent extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -335,7 +335,7 @@ public class searchStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
             try{
                 stmt = conn.createStatement();
-                int stdID = Integer.parseInt(id.getText());
+                String stdMail = mail.getText();
                 String stdName = name.getText();
                 String stdMajor = major.getSelectedItem().toString();
                 String stdPassword = password.getText();
@@ -343,7 +343,7 @@ public class searchStudent extends javax.swing.JFrame {
                 String stdPhone = phone.getText();
                 int stdclass = Integer.parseInt(jclass.getText());
 
-                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE stdID = '"+stdID+"'";
+                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE stdMail = '"+stdMail+"'";
 
                 stmt.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null,"Data has successfuly updated");
@@ -389,8 +389,8 @@ public class searchStudent extends javax.swing.JFrame {
                
         try{
             stmt = conn.createStatement();
-            int stdID = Integer.parseInt(id.getText());
-            String sql = "SELECT * FROM STUDENT WHERE stdID = '"+stdID+"'";
+            String stdMail = mail.getText();
+            String sql = "SELECT * FROM STUDENT WHERE stdMail = '"+stdMail+"'";
             
             rs = stmt.executeQuery(sql);
             
@@ -420,16 +420,16 @@ public class searchStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailActionPerformed
         // TODO add your handling code here:       
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_mailActionPerformed
 
-    private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
+    private void mailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyReleased
         // TODO add your handling code here:
-        if(id.getText().length() >= 1){          
+        if(mail.getText().length() >= 1){          
             jButton3.setEnabled(true);
         }
-    }//GEN-LAST:event_idKeyReleased
+    }//GEN-LAST:event_mailKeyReleased
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -484,8 +484,8 @@ public class searchStudent extends javax.swing.JFrame {
             // Perform the delete operation
                     try{
                         stmt = conn.createStatement();
-                        int stdID = Integer.parseInt(id.getText());
-                        String sql = "DELETE FROM student WHERE stdID = '"+stdID+"'";
+                        String stdMail = mail.getText();
+                        String sql = "DELETE FROM student WHERE stdMail = '"+stdMail+"'";
                         stmt.executeUpdate(sql);
 
                         setVisible(false);
@@ -555,7 +555,6 @@ public class searchStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField city;
-    private javax.swing.JTextField id;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -573,6 +572,7 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jclass;
+    private javax.swing.JTextField mail;
     private javax.swing.JComboBox<String> major;
     private javax.swing.JTextField name;
     private javax.swing.JTextField password;
