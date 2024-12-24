@@ -60,6 +60,77 @@ public class login extends javax.swing.JFrame {
 	System.out.println("Error:" + e.toString());
         }
     }
+    private void loginIn(){
+        try{
+            stmt = conn.createStatement();
+            String userEmail = mail.getText();
+            String userPassword = password.getText();
+            
+            String sql = "SELECT 'admin' AS role FROM admin WHERE mail = '"+userEmail+"' AND password = '"+userPassword+"' " +
+             "UNION " +
+             "SELECT 'student' AS role FROM student WHERE stdMail = '"+userEmail+"' AND stdPassword = '"+userPassword+"' " +
+             "UNION " +
+             "SELECT 'staff' AS role FROM staff WHERE staffMail = '"+userEmail+"' AND staffPassword = '"+userPassword+"'";
+           
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+            String role = rs.getString("role");
+            if ("admin".equals(role)) {
+                setVisible(false);
+                home object = new home();
+                object.setVisible(true);
+            } 
+            else if ("student".equals(role)) {
+                String loginInfo = mail.getText();
+                viewStudentProfile info = new viewStudentProfile();  
+                info.setloginMail(loginInfo);
+                
+                courseRegister cr = new courseRegister();  
+                cr.setloginMail(loginInfo);
+                setVisible(false);
+                
+                dashboardStudent object = new dashboardStudent();
+                object.setVisible(true);
+            }
+            else if ("staff".equals(role)){
+                setVisible(false);
+                dashboardStaff object = new dashboardStaff();
+                object.setVisible(true);
+            }
+            } else {
+                // Invalid login
+                JOptionPane.showMessageDialog(this, 
+        "<html><font face='Calibri' size='24' color='red'>What's wrong, bro? Can't even remember your own identity? |.___.| Ask yo GREAT GRANDMA again");
+            }
+            
+        }
+        catch(HeadlessException | SQLException e){
+           JOptionPane.showMessageDialog(null,e);
+        }      
+    }
+    private void rememberPassword(){
+        if(RememberPassword.isSelected()){
+        try{
+            FileWriter writer = new FileWriter("info.txt");
+            writer.write(mail.getText() + "\n");           
+            writer.write(password.getText() + "\n");
+            writer.write(RememberPassword.isSelected() + "\n");           
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving credentials.");
+            e.printStackTrace();
+            }
+        }
+        else{
+            try{
+            FileWriter writer = new FileWriter("info.txt");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving credentials.");
+            e.printStackTrace();
+        }
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -184,76 +255,8 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-            stmt = conn.createStatement();
-            String userEmail = mail.getText();
-            String userPassword = password.getText();
-            
-            String sql = "SELECT 'admin' AS role FROM admin WHERE mail = '"+userEmail+"' AND password = '"+userPassword+"' " +
-             "UNION " +
-             "SELECT 'student' AS role FROM student WHERE stdMail = '"+userEmail+"' AND stdPassword = '"+userPassword+"' " +
-             "UNION " +
-             "SELECT 'staff' AS role FROM staff WHERE staffMail = '"+userEmail+"' AND staffPassword = '"+userPassword+"'";
-           
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-            String role = rs.getString("role");
-            if ("admin".equals(role)) {
-                setVisible(false);
-                home object = new home();
-                object.setVisible(true);
-            } 
-            else if ("student".equals(role)) {
-                String loginInfo = mail.getText();
-                viewStudentProfile info = new viewStudentProfile();  
-                info.setloginMail(loginInfo);
-                
-                courseRegister cr = new courseRegister();  
-                cr.setloginMail(loginInfo);
-                setVisible(false);
-                
-                dashboardStudent object = new dashboardStudent();
-                object.setVisible(true);
-            }
-            else if ("staff".equals(role)){
-                setVisible(false);
-                dashboardStaff object = new dashboardStaff();
-                object.setVisible(true);
-            }
-            } else {
-                // Invalid login
-                JOptionPane.showMessageDialog(this, 
-        "<html><font face='Calibri' size='24' color='red'>What's wrong, bro? Can't even remember your own identity? |.___.| Ask yo GREAT GRANDMA again");
-            }
-            
-        }
-        catch(HeadlessException | SQLException e){
-           JOptionPane.showMessageDialog(null,e);
-        }
-        
-        // Remember Password        
-        if(RememberPassword.isSelected()){
-        try{
-            FileWriter writer = new FileWriter("info.txt");
-            writer.write(mail.getText() + "\n");           
-            writer.write(password.getText() + "\n");
-            writer.write(RememberPassword.isSelected() + "\n");           
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving credentials.");
-            e.printStackTrace();
-        }
-
-        }
-        else{
-            try{
-            FileWriter writer = new FileWriter("info.txt");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving credentials.");
-            e.printStackTrace();
-        }
-    }    
+        loginIn();
+        rememberPassword();          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

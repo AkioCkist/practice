@@ -32,7 +32,134 @@ public class searchStudent extends javax.swing.JFrame {
         initComponents();
         conn = databaseConnection.connection();       
     }
+    private void update(){
+        try{
+                stmt = conn.createStatement();
+                String stdMail = mail.getText();
+                String stdName = name.getText();
+                String stdMajor = major.getSelectedItem().toString();
+                String stdPassword = password.getText();
+                String stdCity = city.getText();
+                String stdPhone = phone.getText();
+                int stdclass = Integer.parseInt(jclass.getText());
 
+                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE stdMail = '"+stdMail+"'";
+
+                stmt.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null,"Data has successfuly updated");
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+    }
+    private void search(){
+        update.setEnabled(true);           
+        jButton4.setEnabled(true);
+        major.setEnabled(true);
+        
+        name.setEnabled(true);
+        password.setEnabled(true);
+        city.setEnabled(true);
+        major.setEnabled(true);
+        jclass.setEnabled(true);
+        phone.setEnabled(true);
+               
+        try{
+            stmt = conn.createStatement();
+            String stdMail = mail.getText();
+            String sql = "SELECT * FROM STUDENT WHERE stdMail = '"+stdMail+"'";
+            
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next()){
+                name.setText(rs.getString("stdName"));
+                password.setText(rs.getString("stdPassword"));
+                major.setSelectedItem(rs.getString("stdMajor"));
+                phone.setText(rs.getString("stdPhone"));
+                city.setText(rs.getString("stdCity"));
+                jclass.setText(String.format("%s", rs.getInt("class")));
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "<html><font face='Arial' size='8' color='black'>Record Not Found.");
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }      
+    }
+    private void delete(){
+        int attempts = 0;
+        boolean isConfirmed = false;
+
+        while (attempts < 4 && !isConfirmed) {
+            // Generate random
+            String confirmationCode = generateRandomString(8);
+
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel(
+                "Type the following code to confirm deletion: " + confirmationCode +
+                " (Attempts left: " + (4 - attempts) + ")"
+            );
+            JTextField textField = new JTextField(10);
+
+            panel.add(label);
+            panel.add(textField);
+
+            int response = JOptionPane.showConfirmDialog(
+                this, 
+                panel, 
+                "Confirm Deletion", 
+                JOptionPane.OK_CANCEL_OPTION, 
+                JOptionPane.WARNING_MESSAGE
+            );
+
+            if (response == JOptionPane.OK_OPTION) {
+                String userInput = textField.getText().trim();
+                if (confirmationCode.equals(userInput)) {
+                    isConfirmed = true; // User confirmed the code
+                    break;
+                } else {
+                    attempts++;
+                    if (attempts < 4) {
+                        JOptionPane.showMessageDialog(
+                            this, 
+                            "Incorrect code. Please try again.", 
+                            "Error", 
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Deletion canceled.", "Canceled", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }
+
+        if (isConfirmed) {
+            // Perform the delete operation
+                    try{
+                        stmt = conn.createStatement();
+                        String stdMail = mail.getText();
+                        String sql = "DELETE FROM student WHERE stdMail = '"+stdMail+"'";
+                        stmt.executeUpdate(sql);
+
+                        setVisible(false);
+                        showStudent object = new showStudent();
+                        object.setVisible(true);
+            }
+            catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+            }
+        } else {
+            // User failed
+            JOptionPane.showMessageDialog(
+                this, 
+                "You have exceeded the maximum number of attempts. Deletion canceled.", 
+                "Failed", 
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -333,24 +460,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-            try{
-                stmt = conn.createStatement();
-                String stdMail = mail.getText();
-                String stdName = name.getText();
-                String stdMajor = major.getSelectedItem().toString();
-                String stdPassword = password.getText();
-                String stdCity = city.getText();
-                String stdPhone = phone.getText();
-                int stdclass = Integer.parseInt(jclass.getText());
-
-                String sql = "UPDATE STUDENT SET stdName = '"+stdName+"', stdPassword = '"+stdPassword+"', stdMajor = '"+stdMajor+"', stdCity = '"+stdCity+"', stdPhone = '"+stdPhone+"', class = '"+stdclass+"' WHERE stdMail = '"+stdMail+"'";
-
-                stmt.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null,"Data has successfuly updated");
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null,e);
-            }
+        update();
     }//GEN-LAST:event_updateActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -376,40 +486,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        update.setEnabled(true);           
-        jButton4.setEnabled(true);
-        major.setEnabled(true);
-        
-        name.setEnabled(true);
-        password.setEnabled(true);
-        city.setEnabled(true);
-        major.setEnabled(true);
-        jclass.setEnabled(true);
-        phone.setEnabled(true);
-               
-        try{
-            stmt = conn.createStatement();
-            String stdMail = mail.getText();
-            String sql = "SELECT * FROM STUDENT WHERE stdMail = '"+stdMail+"'";
-            
-            rs = stmt.executeQuery(sql);
-            
-            if(rs.next()){
-                name.setText(rs.getString("stdName"));
-                password.setText(rs.getString("stdPassword"));
-                major.setSelectedItem(rs.getString("stdMajor"));
-                phone.setText(rs.getString("stdPhone"));
-                city.setText(rs.getString("stdCity"));
-                jclass.setText(String.format("%s", rs.getInt("class")));
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "<html><font face='Arial' size='8' color='black'>Record Not Found.");
-            }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
+        search();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityActionPerformed
@@ -433,80 +510,9 @@ public class searchStudent extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int attempts = 0;
-        boolean isConfirmed = false;
-
-        while (attempts < 4 && !isConfirmed) {
-            // Generate random
-            String confirmationCode = generateRandomString(8);
-
-            JPanel panel = new JPanel();
-            JLabel label = new JLabel(
-                "Type the following code to confirm deletion: " + confirmationCode +
-                " (Attempts left: " + (4 - attempts) + ")"
-            );
-            JTextField textField = new JTextField(10);
-
-            panel.add(label);
-            panel.add(textField);
-
-            int response = JOptionPane.showConfirmDialog(
-                this, 
-                panel, 
-                "Confirm Deletion", 
-                JOptionPane.OK_CANCEL_OPTION, 
-                JOptionPane.WARNING_MESSAGE
-            );
-
-            if (response == JOptionPane.OK_OPTION) {
-                String userInput = textField.getText().trim();
-                if (confirmationCode.equals(userInput)) {
-                    isConfirmed = true; // User confirmed the code
-                    break;
-                } else {
-                    attempts++;
-                    if (attempts < 4) {
-                        JOptionPane.showMessageDialog(
-                            this, 
-                            "Incorrect code. Please try again.", 
-                            "Error", 
-                            JOptionPane.ERROR_MESSAGE
-                        );
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Deletion canceled.", "Canceled", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-        }
-
-        if (isConfirmed) {
-            // Perform the delete operation
-                    try{
-                        stmt = conn.createStatement();
-                        String stdMail = mail.getText();
-                        String sql = "DELETE FROM student WHERE stdMail = '"+stdMail+"'";
-                        stmt.executeUpdate(sql);
-
-                        setVisible(false);
-                        showStudent object = new showStudent();
-                        object.setVisible(true);
-            }
-            catch(Exception e){
-               JOptionPane.showMessageDialog(null,e);
-            }
-        } else {
-            // User failed
-            JOptionPane.showMessageDialog(
-                this, 
-                "You have exceeded the maximum number of attempts. Deletion canceled.", 
-                "Failed", 
-                JOptionPane.ERROR_MESSAGE
-            );
-        }
+        delete();
     }
 
-    //Random generator
     private String generateRandomString(int length) {
         final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();

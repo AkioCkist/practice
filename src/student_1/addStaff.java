@@ -28,7 +28,27 @@ public class addStaff extends javax.swing.JFrame {
         initComponents();
         conn = databaseConnection.connection();
     }
-
+    private void add(){
+        try{
+            stmt = conn.createStatement();
+            String staffName = name.getText();
+            String staffMail = email.getText();
+            String staffPass = Password.getText();
+            int staffID = Integer.parseInt(id.getText());
+            
+            String sql = "INSERT INTO staff (staffID , staffMail, staffName, staffPassword)values('"+staffID+"','"+staffMail+"', '"+staffName+"', '"+staffPass+"')";
+            
+            stmt.execute(sql);
+            JOptionPane.showMessageDialog(null, "Data inserted successfully");
+            
+            setVisible(false);
+            addStaff object = new addStaff();
+            object.setVisible(true);
+        }
+        catch(SQLException e){
+           JOptionPane.showMessageDialog(null,e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -259,25 +279,7 @@ public class addStaff extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:    
-        try{
-            stmt = conn.createStatement();
-            String staffName = name.getText();
-            String staffMail = email.getText();
-            String staffPass = Password.getText();
-            int staffID = Integer.parseInt(id.getText());
-            
-            String sql = "INSERT INTO staff (staffID , staffMail, staffName, staffPassword)values('"+staffID+"','"+staffMail+"', '"+staffName+"', '"+staffPass+"')";
-            
-            stmt.execute(sql);
-            JOptionPane.showMessageDialog(null, "Data inserted successfully");
-            
-            setVisible(false);
-            addStaff object = new addStaff();
-            object.setVisible(true);
-        }
-        catch(SQLException e){
-           JOptionPane.showMessageDialog(null,e);
-        }
+        add();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

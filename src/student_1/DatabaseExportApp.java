@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package student_1;
 
 /**
@@ -31,7 +27,7 @@ public class DatabaseExportApp {
         frame.setSize(400, 200);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 1, 10, 10));
+        panel.setLayout(new GridLayout(4, 1, 10, 10));
 
         JLabel label = new JLabel("Select export format:");
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -44,10 +40,17 @@ public class DatabaseExportApp {
         JButton exportButton = new JButton("Export");
         panel.add(exportButton);
 
+        JButton cancelButton = new JButton("Cancel");
+        panel.add(cancelButton);
+
         frame.add(panel);
+
+        // Center the frame on the screen
+        frame.setLocationRelativeTo(null);
+
         frame.setVisible(true);
 
-        // Button action listener
+        // Export button action listener
         exportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,6 +60,14 @@ public class DatabaseExportApp {
                 } else {
                     JOptionPane.showMessageDialog(frame, "Please select a format.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        // Cancel button action listener
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
             }
         });
     }

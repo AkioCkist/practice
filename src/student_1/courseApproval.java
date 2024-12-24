@@ -32,7 +32,7 @@ public class courseApproval extends javax.swing.JFrame {
     Statement stmt = null;
     ResultSet rs = null;
     public courseApproval() {
-        super("courseApproval");
+        super("Course Approval");
         initComponents();
         conn = databaseConnection.connection();
         connectToDatabase();

@@ -33,7 +33,7 @@ public class manageScore extends javax.swing.JFrame {
     Statement stmt = null;
     ResultSet rs = null;
     public manageScore() {
-        super("Score manage");
+        super("Manage Score");
         initComponents();
         conn = databaseConnection.connection();
     }

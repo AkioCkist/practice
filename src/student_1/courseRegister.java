@@ -37,7 +37,7 @@ public class courseRegister extends javax.swing.JFrame {
     private List<String> booleanColumns;
     static String loginMail;
     public courseRegister() {
-        super("Search Staff");
+        super("Register Courses");
         booleanColumns = new ArrayList<>();
         initComponents();
         conn = databaseConnection.connection(); 

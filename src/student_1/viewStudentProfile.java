@@ -26,7 +26,7 @@ public class viewStudentProfile extends javax.swing.JFrame {
     ResultSet rs = null;
     static String loginMail;
     public viewStudentProfile() {
-        super("View Student");
+        super("View Student Profile");
         initComponents();
         conn = databaseConnection.connection();
         showRecord();
@@ -109,7 +109,7 @@ public void showRecord(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Show Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View Profile", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -24,7 +24,7 @@ public class showStaff extends javax.swing.JFrame {
     Statement stmt = null;
     ResultSet rs = null;
     public showStaff() {
-        super("View Staff");
+        super("Show Staff");
         initComponents();
         conn = databaseConnection.connection();
         showRecord();
