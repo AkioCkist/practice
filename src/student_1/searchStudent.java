@@ -140,8 +140,13 @@ public class searchStudent extends javax.swing.JFrame {
                     try{
                         stmt = conn.createStatement();
                         String stdMail = mail.getText();
-                        String sql = "DELETE FROM student WHERE stdMail = '"+stdMail+"'";
-                        stmt.executeUpdate(sql);
+                        String sql_1 = "DELETE FROM coursescore WHERE courseMail = '"+stdMail+"'"; 
+                        String sql_2 = "DELETE FROM course WHERE courseMail = '"+stdMail+"'"; 
+                        String sql = "DELETE FROM student WHERE stdMail = '"+stdMail+"'"; 
+
+                        stmt.executeUpdate(sql_1); 
+                        stmt.executeUpdate(sql_2);
+                        stmt.executeUpdate(sql);  
 
                         setVisible(false);
                         showStudent object = new showStudent();
